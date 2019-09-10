@@ -12,13 +12,8 @@ public class EmojiUtils {
 
     public static Message buildMessageWithEmotes(JDA api, String guildId, String message ) {
         MessageBuilder builder = new MessageBuilder();
-        StringTokenizer tokenizer = new StringTokenizer(message);
-        boolean first = true;
+        StringTokenizer tokenizer = new StringTokenizer(message, " \t\n\r\f", true);
         while (tokenizer.hasMoreTokens()) {
-            if (!first) {
-                builder.append(" ");
-            } else
-                first = false;
             final String token = tokenizer.nextToken();
             if (!token.startsWith(":") && !token.endsWith(":")) {
                 builder.append(token);
