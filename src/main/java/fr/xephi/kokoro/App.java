@@ -5,6 +5,7 @@ import fr.xephi.kokoro.config.MainConfig;
 import fr.xephi.kokoro.events.MessageListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import twitter4j.TwitterStream;
 
 public class App 
 {
@@ -15,6 +16,7 @@ public class App
             AppLoader appLoaded = new AppLoader();
             JDA jda = new JDABuilder(appLoaded.getSettings().getProperty(MainConfig.BOT_TOKEN)).build();
             CommandHandler commands = new CommandHandler(appLoaded.getSettings(), jda);
+            TwitterLoader twitterLoader = new TwitterLoader(appLoaded.getSettings());
             jda.addEventListener(new MessageListener(commands));
         } catch (Exception e) {
             e.printStackTrace(); // TODO: Better handler for exceptions
