@@ -13,13 +13,12 @@ public class MessageListener extends ListenerAdapter {
 
     private final CommandHandler commands;
 
-    public MessageListener( CommandHandler commandHandler ) {
+    public MessageListener(CommandHandler commandHandler) {
         this.commands = commandHandler;
     }
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event)
-    {
+    public void onMessageReceived(MessageReceivedEvent event) {
         Loggers.MESSAGE_LISTENER.info("Receive message");
         if (event.getAuthor().isBot())
             return;
@@ -45,7 +44,7 @@ public class MessageListener extends ListenerAdapter {
         if (!commands.commandHandled(guildId, command))
             return;
         Loggers.MESSAGE_LISTENER.info("We can handle this command, continue");
-        if (!commands.hasPermissionForCommand( command, Objects.requireNonNull(event.getMember()).getRoles()))
+        if (!commands.hasPermissionForCommand(command, Objects.requireNonNull(event.getMember()).getRoles()))
             return;
         Loggers.MESSAGE_LISTENER.info("User has permission for this command");
         String args = "";
@@ -55,7 +54,7 @@ public class MessageListener extends ListenerAdapter {
         Loggers.MESSAGE_LISTENER.info("Handled command : " + command);
         Loggers.MESSAGE_LISTENER.info("With args : " + args);
         try {
-            commands.handleCommand( guildId, channelId, command, args );
+            commands.handleCommand(guildId, channelId, command, args);
         } catch (final NullPointerException e) {
             e.printStackTrace();
         }

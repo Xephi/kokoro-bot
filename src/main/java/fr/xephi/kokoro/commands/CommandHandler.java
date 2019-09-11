@@ -63,7 +63,7 @@ public class CommandHandler {
             return;
         }
         if (command.equalsIgnoreCase("twitter")) {
-            TwitterFeed tf = twitterCommand.execute( jda, settings.getProperty(MainConfig.DATA_FOLDER), guildId, channelId, command, args);
+            TwitterFeed tf = twitterCommand.execute(jda, settings.getProperty(MainConfig.DATA_FOLDER), guildId, channelId, command, args);
             if (tf != null) {
                 if (!twitterFeeds.containsKey(guildId))
                     twitterFeeds.put(guildId, new HashMap<>());

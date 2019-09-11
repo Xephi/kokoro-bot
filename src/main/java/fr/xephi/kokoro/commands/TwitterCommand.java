@@ -37,7 +37,7 @@ public class TwitterCommand implements ICommand<TwitterFeed> {
                 Objects.requireNonNull(jda.getTextChannelById(channelId)).sendMessage(Messages.Errors.CHANNEL_NOT_FOUND).queue();
                 return null;
             }
-            CustomCommandsUtils.saveTo( dataFolder, "twitter", guildId, twitterUser, channelId );
+            CustomCommandsUtils.saveTo(dataFolder, "twitter", guildId, twitterUser, channelId);
             return new TwitterFeed(twitterUser, channelId);
         } catch (final NullPointerException ignored) {
         }

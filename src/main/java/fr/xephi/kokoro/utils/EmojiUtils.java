@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 
 public class EmojiUtils {
 
-    public static Message buildMessageWithEmotes(JDA api, String guildId, String message ) {
+    public static Message buildMessageWithEmotes(JDA api, String guildId, String message) {
         MessageBuilder builder = new MessageBuilder();
         StringTokenizer tokenizer = new StringTokenizer(message, " \t\n\r\f", true);
         while (tokenizer.hasMoreTokens()) {
@@ -20,7 +20,7 @@ public class EmojiUtils {
                 continue;
             }
             try {
-                final List<Emote> emotes = api.getGuildById( guildId ).getEmotesByName(token.substring(1, token.length() - 1), false);
+                final List<Emote> emotes = api.getGuildById(guildId).getEmotesByName(token.substring(1, token.length() - 1), false);
                 if (emotes.isEmpty()) {
                     builder.append(token);
                     continue;

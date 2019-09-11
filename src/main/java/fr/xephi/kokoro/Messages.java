@@ -10,4 +10,8 @@ public class Messages {
     public static class Success {
         public static String CUSTOM_COMMAND = "Successfully created a new command !";
     }
+
+    private Messages() {
+        // Prevent instantiation
+    }
 }

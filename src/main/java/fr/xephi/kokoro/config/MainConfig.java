@@ -17,7 +17,7 @@ public class MainConfig implements SettingsHolder {
             newProperty("bot.createcommand", "createcommand");
 
     public static final Property<String> DATA_FOLDER =
-            newProperty( "bot.dataFolder", "data" );
+            newProperty("bot.dataFolder", "data");
 
     public static final Property<String> ADMIN_PERMISSION =
             newProperty("permission.role", "Bot Manager");

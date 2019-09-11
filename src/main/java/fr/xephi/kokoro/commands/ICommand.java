@@ -7,5 +7,5 @@ public interface ICommand<T> {
 
     String getHelper();
 
-    T execute(JDA jda, String dataFolder, String guildId, String channelId, String command, String args );
+    T execute(JDA jda, String dataFolder, String guildId, String channelId, String command, String args);
 }

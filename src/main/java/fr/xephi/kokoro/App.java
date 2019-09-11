@@ -20,4 +20,8 @@ public class App
             e.printStackTrace(); // TODO: Better handler for exceptions
         }
     }
+
+    private App() {
+        // Prevent instantiation
+    }
 }

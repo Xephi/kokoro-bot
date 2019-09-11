@@ -5,7 +5,7 @@ public class Command {
     public String command;
     public String reply;
 
-    public Command( String command, String reply ) {
+    public Command(String command, String reply) {
         this.command = command;
         this.reply = reply;
     }

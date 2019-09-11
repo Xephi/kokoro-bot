@@ -12,7 +12,7 @@ public class CreateCommands implements ICommand<Command> {
 
     private String name;
 
-    public CreateCommands( String name ) {
+    public CreateCommands(String name) {
         this.name = name;
     }
 
