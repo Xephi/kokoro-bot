@@ -1,7 +1,6 @@
-package fr.xephi.kokoro.commands;
+package fr.xephi.kokoro.commands.utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
@@ -10,18 +9,17 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
-public class CustomCommands {
+public class CustomCommandsUtils {
 
     /**
      *
      * @param dataFolder path to dataFolder, can be relative or absolute
-     * @return an association of Guild Id -> (Command -> Text)
+     * @return an association of Guild Id -> (String -> String)
      */
-    static Map<String, Map<String, String>> loadCommands(String dataFolder) {
+    public static Map<String, Map<String, String>> loadFolder(String dataFolder, String folderToLoad) {
         Map<String, Map<String, String>> commands = new HashMap<>();
-        Path dir = Paths.get(dataFolder);
+        Path dir = Paths.get(dataFolder, folderToLoad);
         if (!dir.toFile().exists())
             try {
                 dir.toFile().mkdirs();
@@ -53,13 +51,14 @@ public class CustomCommands {
     /**
      *
      * @param dataFolder path to dataFolder, can be relative or absolute
+     * @param contentFolder can be: commands, twitter, musics
      * @param guildId discord guild id
-     * @param command command to create
-     * @param args text to reply in case of that command
-     * @return true if the command was created
+     * @param fileName file to create
+     * @param content content of the file
+     * @return true if the file was created
      */
-    static boolean saveCommand( String dataFolder, String guildId, String command, String args ) {
-        final File file = new File(dataFolder + File.separator + guildId + File.separator + command );
+    public static boolean saveTo( String dataFolder, String contentFolder, String guildId, String fileName, String content ) {
+        final File file = new File(dataFolder + File.separator + contentFolder + File.separator + guildId + File.separator + fileName );
         if (file.exists())
             return false;
         try {
@@ -70,7 +69,7 @@ public class CustomCommands {
             RandomAccessFile stream = new RandomAccessFile(file, "rw");
             FileChannel channel = stream.getChannel();
             try ( FileLock lock = channel.tryLock() ) {
-                stream.write(args.getBytes(StandardCharsets.UTF_8));
+                stream.write(content.getBytes(StandardCharsets.UTF_8));
             } catch (final OverlappingFileLockException e) {
                 stream.close();
                 channel.close();
