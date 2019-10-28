@@ -11,3 +11,9 @@ TODO :
  - Vocal Bot
  - DeleteCommand & DeleteTwitter commands
  - Move from filesystem database to any kind of SQL/NoSQL system
+ 
+ Note : 
+ 
+ Actually not the source code of the bot behind https://twitter.com/KokoroTsurumakl
+ 
+ 
